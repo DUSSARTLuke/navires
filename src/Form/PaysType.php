@@ -2,26 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\AisShipType;
+use App\Entity\Pays;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class AisShipTypeType extends AbstractType
+class PaysType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle', TextType::class)
-            ->add('aisShipType', TextType::class)
+            ->add('nom', TextType::class)
+            ->add('indicatif', TextType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => AisShipType::class,
+            'data_class' => Pays::class,
         ]);
     }
 }

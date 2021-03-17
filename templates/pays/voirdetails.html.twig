@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails d'un pays{% endblock %}
+{% block body %}
+  <div class="container" style="padding-top: 10px;">
+    {{ form_start(form)}}
+    <div class="form-row">
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.nom, 'Nom du pays') }}
+        {{ form_widget(form.nom, {'attr': {'class': "form-control"}}) }}
+      </div>
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.indicatif, 'Indicatif') }}
+        {{ form_widget(form.indicatif, {'attr': {'class': "form-control"}}) }}
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Modifier</button>
+  </div>
+  {{ form_end(form) }}
+{% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\NavireRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Length;
@@ -11,6 +13,10 @@ use Symfony\Component\Validator\Constraints\Range;
 
 /**
  * @ORM\Entity(repositoryClass=NavireRepository::class)
+ * @ORM\Table(  
+ *              name="navire",
+ *              uniqueConstraints={@ORM\UniqueConstraint(name="mmsi_unique", columns={"mmsi"})}
+ *            )
  */
 class Navire
 {
@@ -22,34 +28,34 @@ class Navire
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\Column(type="string", length=7, unique=true)
      * @Assert\Regex(
-     *              pattern="/[1-9]{7}/",
-     *              message="Le numéro IMO doit comporter 7 chiffres"
+     *              pattern="/[1-9][0-9]{6}",
+     *              message = "Le numéro IMO doit comporter 7 chiffres"
      * )
      */
-    private $IMO;
+    private $imo;
 
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\Length(
-     *                min=3,
-     *                max=100
-     *                )
+     *                  min=3,
+     *                  max=100
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=9)
      * @Assert\Regex(
-     *              pattern="/[1-9]{9}/",
-     *              message="Le numéro mmsi doit comporter 9 chiffres"
+     *              pattern="/[1-9][0-9]{8}",
+     *              message = "Le numéro IMO doit comporter 9 chiffres"
      * )
      */
     private $mmsi;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10, name="indicatifAppel")
      */
     private $indicatifAppel;
 
@@ -57,20 +63,72 @@ class Navire
      * @ORM\Column(type="datetime")
      */
     private $eta;
+    
+
+    /**
+     * @ORM\ManyToOne(targetEntity=AisShipType::class)
+     * @ORM\JoinColumn(name="idAisShipType", nullable=false)
+     */
+    private $leType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Pays::class)
+     * @ORM\JoinColumn(name="idpays", nullable=false)
+     */
+    private $lePavillon;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Port::class, inversedBy="naviresAttendus", cascade={"persist"})
+     * @ORM\JoinColumn(name="idportdestination", nullable=true)
+     */
+    private $portDestination;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Escale::class, mappedBy="leNavire", orphanRemoval=true)
+     */
+    private $lesEscales;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *              min= 0,
+     *              notInRangeMessage = " La longueur doit être supérieure à {{ min }}"
+     *              )
+     */
+    private $longueur;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *              min= 0,
+     *              notInRangeMessage = " La largeur doit être supérieure à {{ min }}"
+     *              )
+     */
+    private $largeur;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=1, name="tirantdeau")
+     */
+    private $tirant_eau;
+
+    public function __construct()
+    {
+        $this->lesEscales = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIMO(): ?string
+    public function getImo(): ?string
     {
-        return $this->IMO;
+        return $this->imo;
     }
 
-    public function setIMO(string $IMO): self
+    public function setImo(string $imo): self
     {
-        $this->IMO = $IMO;
+        $this->imo = $imo;
 
         return $this;
     }
@@ -119,6 +177,109 @@ class Navire
     public function setEta(\DateTimeInterface $eta): self
     {
         $this->eta = $eta;
+
+        return $this;
+    }
+    
+
+    public function getLeType(): ?AisShipType
+    {
+        return $this->leType;
+    }
+
+    public function setLeType(?AisShipType $leType): self
+    {
+        $this->leType = $leType;
+
+        return $this;
+    }
+
+    public function getLePavillon(): ?Pays
+    {
+        return $this->lePavillon;
+    }
+
+    public function setLePavillon(?Pays $lePavillon): self
+    {
+        $this->lePavillon = $lePavillon;
+
+        return $this;
+    }
+
+    public function getPortDestination(): ?Port
+    {
+        return $this->portDestination;
+    }
+
+    public function setPortDestination(?Port $portDestination): self
+    {
+        $this->portDestination = $portDestination;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Escale[]
+     */
+    public function getLesEscales(): Collection
+    {
+        return $this->lesEscales;
+    }
+
+    public function addLesEscale(Escale $lesEscale): self
+    {
+        if (!$this->lesEscales->contains($lesEscale)) {
+            $this->lesEscales[] = $lesEscale;
+            $lesEscale->setLeNavire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesEscale(Escale $lesEscale): self
+    {
+        if ($this->lesEscales->removeElement($lesEscale)) {
+            // set the owning side to null (unless already changed)
+            if ($lesEscale->getLeNavire() === $this) {
+                $lesEscale->setLeNavire(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLongueur(): ?int
+    {
+        return $this->longueur;
+    }
+
+    public function setLongueur(int $longueur): self
+    {
+        $this->longueur = $longueur;
+
+        return $this;
+    }
+
+    public function getLargeur(): ?int
+    {
+        return $this->largeur;
+    }
+
+    public function setLargeur(int $largeur): self
+    {
+        $this->largeur = $largeur;
+
+        return $this;
+    }
+
+    public function getTirantEau(): ?string
+    {
+        return $this->tirant_eau;
+    }
+
+    public function setTirantEau(string $tirant_eau): self
+    {
+        $this->tirant_eau = $tirant_eau;
 
         return $this;
     }

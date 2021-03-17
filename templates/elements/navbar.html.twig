@@ -1,62 +1,102 @@
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a href="/home" style="width: 5%;"><img id="icoNav" src="{{ asset('images/iconTitle.png') }}" style="width: 50%;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">Navire</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="">Créer un navire</a>
-                <a class="dropdown-item" href="">Voir les navires</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/aisshiptype/voirtous">Voir tous les types</a>     
-            </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">Ports</a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="">Liste des Ports</a>
-                {# {% if is_granted('ROLE_ADMIN') %} #}
-                    <a class="dropdown-item" href="">Créer un Port</a>  
-                {# {% endif %} #}
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">Pays</a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="">Liste des Pays</a>
-                </div>
-            </li>
-            {# {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item active">
-                <a class="nav-link" href="../user/administration">Administration
-                    <span class="sr-only">(current)</span>
-                </a>
-                </li>
-            {% endif %}
-            <li class="nav-item active">
-                {% if app.user %}                     
-                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion
-                    <span class="sr-only">(current)</span>
-                </a>  
-                </li>
-            {% else %}
-                <a class="nav-link" href="{{ path('app_login') }}">Connexion
-                <span class="sr-only">(current)</span>
-                </a>
-                </li>
-                <li class="nav-item active">
-                <a class="nav-link" href="/user/inscription">Inscription
-                    <span class="sr-only">(current)</span>
-                </a>
-                </li>
-            {% endif %}   #}
-            </ul> 
-            {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+{# empty Twig template #}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a href="/home" style="width: 5%;"><img id="icoNav" src="{{ asset('images/iconTitle.png') }}" style="width: 50%;"></a>{# {% if app.user %}{{'Utilisateur connecté : '~app.user.nom ~ ' '~app.user.prenom}}{% endif %} #}
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">                                           
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">Navire</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="../navire/creer">Créer un navire</a>
+          <a class="dropdown-item" href="/navire/voirtous">Voir les navires</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/aisshiptype/voirtous">Voir tous les types</a>     
         </div>
-    </nav>
-</header>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">Ports</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/port/voirtous">Liste des Ports</a>
+          {# {% if is_granted('ROLE_ADMIN') %} #}
+            <a class="dropdown-item" href="/port/creer">Créer un Port</a>  
+          {# {% endif %} #}
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">Pays</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/pays/voirtous">Liste des Pays</a>
+        </div>
+      </li>
+      {# {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item active">
+          <a class="nav-link" href="../user/administration">Administration
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      {% endif %} #}
+      {# <li class="nav-item active">
+        {% if app.user %}                     
+          <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion
+            <span class="sr-only">(current)</span>
+          </a>  
+        </li>
+      {% else %}
+        <a class="nav-link" href="{{ path('app_login') }}">Connexion
+          <span class="sr-only">(current)</span>
+        </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/user/inscription">Inscription
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      {% endif %}   #}
+    </ul> 
+    {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+  </div>
+</nav>
+{#<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a href="/home"><img id="icoNav" src="{{ asset('images/iconTitle.png') }}"></a>{% if app.user%}{{'Utilisateur connecté : '~app.user.nom ~ ' '~app.user.prenom}}{% endif %}
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <li class="nav-item active">
+    <a class="nav-link" href="../../home">Home
+      <span class="sr-only">(current)</span>
+    </a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="../../inscription">Inscription</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../login">Authentification</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Navire</a>
+    <div class="dropdown-menu bg-light">
+      <a class="dropdown-item" href="../../navire/creer">Créer un navire</a>
+      <a class="dropdown-item" href="../../navire/voirtous">Voir les navires</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="../../aisshiptype/voirtous">Voir les types de navire</a>
+    </div>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Port</a>
+    <div class="dropdown-menu bg-light">
+      <a class="dropdown-item" href="../../port/creer">Créer un port</a>
+      <a class="dropdown-item" href="../../port/voirtous">Voir les ports</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="../../aisshiptype/voirtous">Voir les types de navire</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../message/contact/">Contact</a>
+  </li>
+</ul>
+{{ render(controller(
+              'App\\Controller\\SearchController::searchBar'
+            )) }}
+</div>
+</nav>#}

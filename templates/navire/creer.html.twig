@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir un navire{% endblock %}
+{% block body %}
+  <div class="container" style="padding-top: 10px;">
+    {{ form_start(form)}}
+    <div class="form-row">
+      <div class="form-group col-md-6"" id="some-custom-id">
+        {{ form_label(form.imo, 'Imo') }}
+        {{ form_widget(form.imo, { 'attr' :{'placeholder': 'Saisir le numéro imo du navire', 'class': "form-control"}}) }}
+      </div>
+      <div class="form-group col-md-6" id="some-custom-id">
+        {{ form_label(form.nom, 'Nom du navire') }}
+        {{ form_widget(form.nom, {'attr': {'placeholder': 'Saisir le nom du navire', 'class': "form-control"}}) }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.mmsi, 'MMSI') }}
+        {{ form_widget(form.mmsi, {'attr': {'placeholder': 'Saisir le numero mmsi du navire', 'class': "form-control"}}) }}
+      </div>
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.indicatifAppel, 'Indicatif Appel') }}
+        {{ form_widget(form.indicatifAppel, { 'attr': {'placeholder': 'Saisir l\'indicatif du navire', 'class': "form-control"}}) }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.longueur, 'Longueur') }}
+        {{ form_widget(form.longueur, { 'attr': {'placeholder': 'Saisir la longueur du navire','class': "form-control"}}) }}
+      </div>
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.largeur, 'Largeur') }}
+        {{ form_widget(form.largeur, { 'attr': {'placeholder': 'Saisir la largeur du navire', 'class': "form-control"}}) }}
+      </div>
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.tirant_eau, 'Tirant d\'eau')}}
+        {{ form_widget(form.tirant_eau, { 'attr': {'placeholder': 'Saisir le tirant d\'eau du navire', 'class': "form-control"}}) }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-12" id="some-custom-id">
+        {{ form_label(form.leType, 'Type de navire') }}
+        {{ form_widget(form.leType, {'attr': {'class': "form-control"}}) }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-12">
+        {{ form_label(form.eta, 'Estimated Time Arrival') }}
+        {{ form_widget(form.eta, {'attr': {'class': "form-control"}}) }}
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Créer</button>
+  </div>
+  {{ form_end(form) }}
+{% endblock %}
+

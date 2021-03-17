@@ -18,7 +18,7 @@ class MessageType extends AbstractType
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('mail', EmailType::class)
-            ->add('message', TextAreaType::class)
+            ->add('message', TextareaType::class)
         ;
     }
 

@@ -1,0 +1,27 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block title %} Pays {% endblock %}
+{% block body %}
+  <div style="text-align: center;">
+    <h3> Liste de tous les pays </h3>
+  </div>
+  <div class="container" style="padding-top:10px;">
+    <table class="table table-striped table-dark">
+      <thead class="thead-dark">
+        <tr>
+          <th> Indicatif</th>
+          <th> Nom </th>
+          <th> Détails </th>
+        </tr>
+      </thead>
+      {% for lepays in pays %}
+        <tr>
+          <td>{{ lepays.indicatif}}</td>
+          <td>{{ lepays.nom }}</td>
+          <td><a href="../../pays/details/{{ lepays.id }}"> Détails </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

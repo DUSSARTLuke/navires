@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir un navire{% endblock %}
+{% block body %}
+  <div class="container" style="padding-top: 10px;">
+    {{ form_start(form)}}
+    <div class="form-row">
+      <div class="form-group col-md-6"" id="some-custom-id">
+        {{ form_label(form.imo, 'Imo') }}
+        {{ form_widget(form.imo, { 'attr' :{'class': "form-control"}}) }}
+      </div>
+      <div class="form-group col-md-6" id="some-custom-id">
+        {{ form_label(form.nom, 'Nom du navire') }}
+        {{ form_widget(form.nom, {'attr': {'class': "form-control"}}) }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.mmsi, 'MMSI') }}
+        {{ form_widget(form.mmsi, {'attr': {'class': "form-control"}}) }}
+      </div>
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.indicatifAppel, 'Indicatif Appel') }}
+        {{ form_widget(form.indicatifAppel, {'attr': {'class': "form-control"}}) }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.longueur, 'Longueur') }}
+        {{ form_widget(form.longueur, {'attr': {'class': "form-control"}}) }}
+      </div>
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.largeur, 'Largeur') }}
+        {{ form_widget(form.largeur, {'attr': {'class': "form-control"}}) }}
+      </div>
+      <div class="col-4" id="some-custom-id">
+        {{ form_label(form.tirant_eau, 'Tirant d\'eau')}}
+        {{ form_widget(form.tirant_eau, {'attr': {'class': "form-control"}}) }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-12" id="some-custom-id">
+        {{ form_label(form.leType, 'Type de navire') }}
+        {{ form_widget(form.leType, {'attr': {'class': "form-control"}}) }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-12">
+        {{ form_label(form.eta, 'Estimated Time Arrival') }}
+        {{ form_widget(form.eta, {'attr': {'class': "form-control"}}) }}
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Modifier</button>
+    {{ form_end(form) }}
+  </div>
+  <div class="container" style="padding-top: 10px;">
+    <script type="text/javascript">
+      // Map appearance
+      var width = "100%";         // width in pixels or percentage
+      var height = "300";         // height in pixels
+      var names = true;           // always show ship names (defaults to false)
+
+      // Single ship tracking
+      var imo = "{{ imo }}";        // display latest position (by IMO, overrides MMSI)
+      var mmsi = "{{ mmsi }}";
+      var show_track = true;      // display track line (last 24 hours)
+    </script>
+    <script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
+  </div>
+{% endblock %}

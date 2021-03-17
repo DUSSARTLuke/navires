@@ -39,11 +39,11 @@ class Message
     private $mail;
 
     /**
-     * @ORM\Column(type="text")
-     * @Assert\Length(
-     *              min = 30, 
-     *              minMessage = "Le message à envoyer doit faire au moins {{ limit }} caractères",
-     * )
+      * @ORM\Column(type="text")
+      * @Assert\Length(
+     *                    min = 30,
+     *                    minMessage = "Le message à envoyer doit faire au moins {{ limit }} caractères",
+     *                    )
      */
     private $message;
 

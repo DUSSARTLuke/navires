@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HomePage Navire{% endblock %}
+
+{% block body %}
+
+
+  <div class="example-wrapper">
+    <h1>Bienvenue chez DussartCorp Navals</h1>
+    <script type="text/javascript">
+      // Map appearance
+      var width = "100%";         // width in pixels or percentage
+      var height = "700";         // height in pixels
+      var latitude = "43.25";     // center latitude (decimal degrees)
+      var longitude = "4.56";    // center longitude (decimal degrees)
+      var zoom = "9";             // initial zoom (between 3 and 18)
+    </script>
+    <script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
+  </div>
+
+{% endblock %}
