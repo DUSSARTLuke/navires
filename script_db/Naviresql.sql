@@ -3,7 +3,7 @@
 -- Host: localhost    Database: naviresymfo
 -- ------------------------------------------------------
 -- Server version	5.7.26
-use naviresymfo;
+use navires;
 
 SET FOREIGN_KEY_CHECKS=0;
 truncate table navire;
