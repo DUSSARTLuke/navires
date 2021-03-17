@@ -1,0 +1,12 @@
+{# empty Twig template #}
+<div clas="form-inline my-2">
+    {{ form_start(formSearch) }}
+
+    {{ form_widget(formSearch.cherche, {'attr': {'placeholder': 'Entrez IMO ou MMSI'}}) }}
+    <div class="form-check form-check-inline">
+        {{ form_widget(formSearch.choix,{'label':'Choix'}) }}
+    </div>
+    {{ form_widget(formSearch.Rechercher, {'attr': {'class':'btn btn-dark'}}) }}
+
+    {{ form_end(formSearch) }}
+</div>
