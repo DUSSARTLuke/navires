@@ -32,6 +32,25 @@ class PortController extends AbstractController {
   }
 
   /**
+   * @Route("/details/{id}", name="detail")
+   * @param PortRepository $repo
+   * @param int $id
+   * @return type
+   */
+  public function voirPays(Request $request, EntityManagerInterface $manager, PortRepository $repo, int $id){
+    $port = $repo->find($id);
+    $form = $this->createForm(PortType::class, $port);
+    $form->handleRequest($request);
+    if($form->isSubmitted() && $form->isValid()){
+      $manager->persist($port);
+      $manager->flush();
+      return $this->redirectToRoute('home');
+    }
+    return $this->render('port/voirdetails.html.twig',
+      ['form' => $form->createView(),
+        ]);
+  }
+  /**
    * 
    * @Route("/creer", name="creer")
    * @param Request $request
