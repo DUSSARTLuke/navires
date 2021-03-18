@@ -4,7 +4,7 @@
 
     {{ form_widget(formSearch.cherche, {'attr': {'placeholder': 'Entrez IMO ou MMSI'}}) }}
     <div class="form-check form-check-inline">
-        {{ form_widget(formSearch.choix,{'label':'Choix'}) }}
+        {{ form_widget(formSearch.choix,{'attr' : {'label':'Choix', 'class':'text-light'}} ) }}
     </div>
     {{ form_widget(formSearch.Rechercher, {'attr': {'class':'btn btn-dark'}}) }}
 

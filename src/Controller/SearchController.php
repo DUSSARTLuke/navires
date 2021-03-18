@@ -24,7 +24,11 @@ class SearchController extends AbstractController
       ->add('choix', ChoiceType::class, array(
         'choices' => array(
           'IMO' => 'imo',
-          'MMSI' => 'mmsi'), 'multiple' => false,
+          'MMSI' => 'mmsi'),
+          'label_attr' => [
+            'class' => 'text-light' 
+          ],
+          'multiple' => false,
         'expanded' => true))
       ->add('Rechercher', SubmitType::class)
       ->getForm()
