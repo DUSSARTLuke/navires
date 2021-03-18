@@ -1,12 +1,19 @@
 {# empty Twig template #}
-<div clas="form-inline my-2">
+<style>
+    .texte label{ font-size: 10px; vertical-align: middle;}
+    .texte input{ width:15px;}
+</style>
     {{ form_start(formSearch) }}
-
-    {{ form_widget(formSearch.cherche, {'attr': {'placeholder': 'Entrez IMO ou MMSI'}}) }}
-    <div class="form-check form-check-inline">
+    <div class="row">
+        <div class="col-6">
+            {{ form_widget(formSearch.cherche, {'attr': {'placeholder': 'Entrez IMO ou MMSI'}}) }}
+        </div>
+        <div class="col-2 texte">
         {{ form_widget(formSearch.choix,{'attr' : {'label':'Choix', 'class':'text-light'}} ) }}
+        </div>
+        <div class="col-2">
+        {{ form_widget(formSearch.Rechercher, {'attr': {'class':'btn btn-dark'}}) }}
+        </div>
     </div>
-    {{ form_widget(formSearch.Rechercher, {'attr': {'class':'btn btn-dark'}}) }}
 
     {{ form_end(formSearch) }}
-</div>
