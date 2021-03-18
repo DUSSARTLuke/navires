@@ -18,7 +18,7 @@ class PaysController extends AbstractController {
   
   /**
    * 
-   * @Route("/details/{id}", name="detailsPays")
+   * @Route("/details/{id}", name="detail")
    * @param PaysRepository $repo
    * @param int $id
    * @return type

@@ -63,7 +63,7 @@ class NavireRepository extends ServiceEntityRepository
       }
       $result = $dql->getResult();
       if($result){
-        return $result()[0]['id'];
+        return $result[0]['id'];
       } else {
         return 'ko';
       }

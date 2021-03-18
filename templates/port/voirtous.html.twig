@@ -25,8 +25,8 @@
       {% for port in ports %}
         <tr>
           <td>{{ port.indicatif}}</td>
-          <td>{{ port.nom }}</td>
-          <td><a href="../../pays/details/{{ port.lePays.id }}">{{ port.lePays.nom }}</td>
+          <td><a href=" {{ path('port_detail', {id:port.id}) }}">{{ port.nom }}</a></td>
+          <td><a href=" {{ path('pays_detail', {id:port.lePays.id}) }}">{{ port.lePays.nom }}</td>
         </tr>
       {% endfor %}
     </table>

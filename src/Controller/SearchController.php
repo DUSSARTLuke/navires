@@ -54,7 +54,8 @@ class SearchController extends AbstractController
     } else {
       $id = intval($repo->getIdby('mmsi', $valeur));
     }
-    if($id = 'ko'){
+    if($id === 'ko'){
+      // $this->addFlash('warning', $id);
       $this->addFlash('warning', "Ce numéro ".$request->request->get('form')['choix']." n'est pas connu de nos services");
       return $this->redirectToRoute("home");
     } else {
