@@ -55,9 +55,9 @@ class Navire
     private $mmsi;
 
     /**
-     * @ORM\Column(type="string", length=10, name="indicatifAppel")
+     * @ORM\Column(type="string", length=10, name="indicatifappel")
      */
-    private $indicatifAppel;
+    private $indicatifappel;
 
     /**
      * @ORM\Column(type="datetime")
@@ -157,14 +157,14 @@ class Navire
         return $this;
     }
 
-    public function getIndicatifAppel(): ?string
+    public function getIndicatifappel(): ?string
     {
-        return $this->indicatifAppel;
+        return $this->indicatifappel;
     }
 
-    public function setIndicatifAppel(string $indicatifAppel): self
+    public function setIndicatifappel(string $indicatifappel): self
     {
-        $this->indicatifAppel = $indicatifAppel;
+        $this->indicatifappel = $indicatifappel;
 
         return $this;
     }

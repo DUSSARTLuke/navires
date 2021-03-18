@@ -1,0 +1,37 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block title %} Tous les navires{% endblock %}
+{% block body %}
+  <div class="container" style="padding-top:10px;">
+    <table class="table table-striped table-dark">
+      <thead class="thead-dark">
+        <tr>
+          <th> IMO</th>
+          <th> MMSI </th>
+          <th> Nom du navire </th>
+          <th> Indicatif navire </th>
+          <th> Longueur </th>
+          <th> Largeur </th>
+          <th> Tiran d'eau </th>
+          <th> navire de navire </th>          
+          <th> Arrivage estimé </th>
+        </tr>
+      </thead>
+      {% for navire in navires %}
+        <tr>
+          <td>{{ navire.imo}}</td>
+          <td>{{ navire.mmsi}}</td>
+          <td><a href=" {{ path('navire_modifier', {id:navire.id}) }}"> {{navire.nom}}</a></td>
+          <td>{{ navire.indicatifappel}}</td>
+          <td>{{ navire.longueur}}</td>
+          <td>{{ navire.largeur}}</td>
+          <td>{{ navire.tiranteau}}</td>
+          <td>{{ navire.letype.libelle }}</td>
+          <td>{{ navire.eta|date('d-m-Y h:i') }}</td>
+          {# <td> <a href=" {{ path('aisshipnavire_portscompatibles', {id:navire.id}) }}"> Ports Compatibles</a></td> #}
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

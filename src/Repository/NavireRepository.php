@@ -61,6 +61,11 @@ class NavireRepository extends ServiceEntityRepository
         . ' where n.mmsi = :valeur');
       $dql->setParameter('valeur', $valeur);
       }
-      return $dql->getResult()[0]['id'];
+      $result = $dql->getResult();
+      if($result){
+        return $result()[0]['id'];
+      } else {
+        return 'ko';
+      }
     }
 }

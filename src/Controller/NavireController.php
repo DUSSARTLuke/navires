@@ -34,8 +34,6 @@ class NavireController extends AbstractController
   public function creer(Request $request, EntityManagerInterface $manager, NavireRepository $repo): Response
   {
     
-    
-    
     $navire = new Navire();
     $form = $this->createForm(NavireType::class, $navire);
     $form->handleRequest($request);
@@ -70,5 +68,17 @@ class NavireController extends AbstractController
     return $this->render('navire/modification.html.twig',
         ['form' => $form->createView(), 'imo' => $navire->getImo(), 'mmsi' => $navire->getMmsi()
     ]);
+  }
+
+  /**
+   * @Route("voirtous", name="voirtous")
+   * 
+   * @return Response
+   */
+  public function voirTous(NavireRepository $repo): Response
+  {
+    $navires = $repo->findAll();
+
+    return $this->render('navire/voirtous.html.twig', ['navires' => $navires]);
   }
 }

@@ -9,10 +9,10 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">Navire</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="../navire/creer">Créer un navire</a>
-          <a class="dropdown-item" href="/navire/voirtous">Voir les navires</a>
+          <a class="dropdown-item" href="{{ path('navire_creer') }}">Créer un navire</a>
+          <a class="dropdown-item" href="{{ path('navire_voirtous') }}">Voir les navires</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/aisshiptype/voirtous">Voir tous les types</a>     
+          <a class="dropdown-item" href="{{ path('aisshiptype_voirtous') }}">Voir tous les types</a>     
         </div>
       </li>
       <li class="nav-item dropdown">
